@@ -1,6 +1,6 @@
 const minionsRouter = require('express').Router();
 
-module.exports = minionsRouter;
+
 
 const {
     addToDatabase,
@@ -21,7 +21,8 @@ minionsRouter.param('minionId', (req, res, next, id) => {
 });
 
 minionsRouter.get('/', (req, res, next) => {
-    res.send(getAllFromDatabase('minions'));
+    const minions = getAllFromDatabase('minions')
+    res.status(200).send(minions);
 });
 
 minionsRouter.post('/', (req, res, next) => {
@@ -32,3 +33,7 @@ minionsRouter.post('/', (req, res, next) => {
 minionsRouter.get('/:minionId', (req, res, next) => {
     res.send(req.minion);
 });
+
+
+
+module.exports = minionsRouter;
